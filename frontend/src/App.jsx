@@ -13,6 +13,7 @@ import { getAuthUser } from "./lib/api";
 import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useAuthUser } from "./hooks/useAuthUser";
+import MyHistory from "./pages/MyHistory";
 
 const App = () => {
   // const data = getAuthUser().then(user => {
@@ -108,6 +109,8 @@ const App = () => {
             )
           }
         />
+
+        <Route path="/my-history" element={<MyHistory />} />
       </Routes>
     </div>
   );

@@ -84,6 +84,7 @@ export const loginUser = async (req,res) => {
     }
 
     const token = generateToken(user.email);
+    console.log("Token from cookies:", token);
 
   res.cookie("token",token,{
     httpOnly : true,

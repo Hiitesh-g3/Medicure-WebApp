@@ -16,10 +16,41 @@ function LoginPage({ onSwitchToRegister }) {
       }));
     };
   
-    const handleLogin = () => {
-      console.log('Login attempt:', formData);
-      // Add your login logic here
+    const handleLogin = async () => {
+      if (!formData.email || !formData.password) {
+        alert("Please enter both email and password.");
+        return;
+      }
+    
+      try {
+        const response = await fetch("http://localhost:3001/api/auth/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include", // send cookies/session
+          body: JSON.stringify({
+            email: formData.email,
+            password: formData.password,
+          }),
+        });
+    
+        const data = await response.json();
+    
+        if (!response.ok) {
+          alert(data.message || "Invalid credentials. Please try again.");
+          return;
+        }
+    
+        console.log("✅ Login successful:", data);
+        alert("Login successful!");
+        window.location.href = "/"; // redirect after successful login
+      } catch (error) {
+        console.error("❌ Login error:", error);
+        alert("Something went wrong. Please try again later.");
+      }
     };
+    
   
     const handleGoogleSignIn = () => {
       console.log('Google Sign-in placeholder');

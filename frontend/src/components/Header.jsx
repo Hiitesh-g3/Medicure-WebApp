@@ -48,6 +48,7 @@ const Header = () => {
               page: "symptom-checker",
             },
             { id: "alternatives", label: "Alternatives", page: "alternatives" },
+            { id: "myHistory", label: "My History", page: "my-history" }
           ].map((nav) => (
             <Link
               to={`/${nav.page}`}

@@ -10,6 +10,9 @@ import { googleAuth } from "./middlewares/googleAuth.js";
 import authRoutes from "./routes/auth.route.js" ;
 import pillRoutes from "./routes/pill.js";
 import protectRoute from "./middlewares/auth.middleware.js";
+import inferenceRoutes from "./routes/inference.routes.js";
+import predictionRouter from "./routes/prediction.route.js";
+import medicureRoutes from "./routes/medicure.route.js";
 
 dotenv.config();
 
@@ -84,6 +87,13 @@ googleAuth, (req,res,next) => {
 })
 
 app.use("/api/pill",protectRoute, pillRoutes);
+
+app.use("/api/medicure", medicureRoutes);
+
+app.use("/api/inference", inferenceRoutes);
+
+app.use("/api/prediction", predictionRouter);
+
 
 // app.listen(process.env.PORT, () => {
 //   console.log(`Server running on port ${process.env.PORT}`);
